@@ -1,6 +1,6 @@
 name: Continuous Integration
 on: [push]
 jobs:
-  call-workflow-passing-data:
+  call-continuous-integration-reusable:
     uses:
       devopsb78/github-reusable-workflows/.github/workflows/ci.yml@main
