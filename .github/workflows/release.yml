@@ -1,0 +1,13 @@
+name: Release
+on:
+  push:
+    tags:
+      - '*'
+jobs:
+  call-release-reusable:
+    uses:
+      devopsb78/github-reusable-workflows/.github/workflows/release.yml@main
+    with:
+      project_name: expense-backend
+      npm_install: true
+    secrets: inherit
