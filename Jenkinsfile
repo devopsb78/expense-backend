@@ -1,64 +1,66 @@
 pipeline {
+
   agent {
     node {
       label 'ci-server'
     }
   }
 
-  parameters {
-    string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
-
-    text(name: 'BIOGRAPHY', defaultValue: '', description: 'Enter some information about the person')
-
-    booleanParam(name: 'TOGGLE', defaultValue: true, description: 'Toggle this value')
-
-    choice(name: 'CHOICE', choices: ['One', 'Two', 'Three'], description: 'Pick something')
-
-    password(name: 'PASSWORD', defaultValue: 'SECRET', description: 'Enter a password')
-  }
-
-  environment {
-    MYURL="jenkins.com"
-  }
-
   stages {
-    stage('Example') {
-      input {
-        message "Should we continue?"
-        ok "Yes, we should."
-        submitter "alice,bob"
-        parameters {
-          string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
-        }
-      }
+
+    stage('Lint Code') {
+//       when {
+//         allOf {
+//           not { buildingTag() }
+//           branch 'main'
+//         }
+//       }
       steps {
-        echo 'Hello World'
+//         sh 'env'
+        echo 'Lint Code'
       }
     }
 
-    stage('Example1') {
-      when { triggeredBy 'SCMTrigger' }
+    stage('Run Unit tests') {
+//       when { not { buildingTag() } }
       steps {
-        echo 'Hello World'
+        echo 'Run Unit tests'
       }
     }
 
-    stage('Parallel Stage') {
-      parallel {
+    stage('Run Integration tests') {
+//       when { not { buildingTag() } }
+      steps {
+        echo 'Run Integration tests'
+      }
+    }
 
-        stage('Example2') {
-          steps {
-            echo 'Hello World'
-          }
-        }
+    stage('Sonar Scan Code Review') {
+//       when {
+//         allOf {
+//           not { buildingTag() }
+//           branch 'main'
+//         }
+//       }
+      steps {
+        echo 'Sonar Scan'
+      }
+    }
 
-        stage('Example3') {
-          steps {
-            echo 'Hello World'
-          }
-        }
+    stage('Build Code') {
+//       when { buildingTag() }
+      steps {
+        echo 'Build Code'
+      }
+    }
+
+    stage('Release Software') {
+//       when { buildingTag() }
+      steps {
+        echo 'Release Software'
       }
     }
 
   }
+
 }
