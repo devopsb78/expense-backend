@@ -48,14 +48,14 @@ pipeline {
     }
 
     stage('Build Code') {
-//       when { buildingTag() }
+       when { buildingTag() }
       steps {
         echo 'Build Code'
       }
     }
 
     stage('Release Software') {
-//       when { buildingTag() }
+       when { buildingTag() }
       steps {
         echo 'Release Software'
       }
