@@ -11,11 +11,13 @@ node('ci-server') {
       stage('Lint Code') {
         print 'OK'
       }
-      stage('Run Unit Tests') {
-        print 'OK'
-      }
-      stage('Run Integration Tests') {
-        print 'OK'
+      if(env.BRANCH_NAME != 'main') {
+        stage('Run Unit Tests') {
+          print 'OK'
+        }
+        stage('Run Integration Tests') {
+          print 'OK'
+        }
       }
       stage('Sonar Scan Code Review') {
         print 'OK'
