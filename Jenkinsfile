@@ -16,22 +16,22 @@ pipeline {
 //         }
 //       }
       steps {
-//         sh 'env'
+         sh 'env'
         echo 'Lint Code'
       }
     }
 
-    stage('Run Unit tests') {
+    stage('Run Unit Tests') {
 //       when { not { buildingTag() } }
       steps {
-        echo 'Run Unit tests'
+        echo 'Run Unit Tests'
       }
     }
 
-    stage('Run Integration tests') {
+    stage('Run Integration Tests') {
 //       when { not { buildingTag() } }
       steps {
-        echo 'Run Integration tests'
+        echo 'Run Integration Tests'
       }
     }
 
