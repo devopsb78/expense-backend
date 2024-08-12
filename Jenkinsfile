@@ -6,7 +6,7 @@ node('ci-server') {
       stage('Release Software') {
         print 'OK'
       }
-
+    }
     else {
       stage('Lint Code') {
         print 'OK'
