@@ -10,10 +10,10 @@ pipeline {
 
     stage('Lint Code') {
        when {
-//         allOf {
+         allOf {
            not { buildingTag() }
-//           branch 'main'
-//         }
+           branch 'main'
+         }
        }
       steps {
          sh 'env'
@@ -37,10 +37,10 @@ pipeline {
 
     stage('Sonar Scan Code Review') {
       when {
-//         allOf {
+         allOf {
            not { buildingTag() }
-//           branch 'main'
-//         }
+           branch 'main'
+         }
        }
       steps {
         echo 'Sonar Scan'
