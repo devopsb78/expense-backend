@@ -1,66 +1,21 @@
-pipeline {
-
-  agent {
-    node {
-      label 'ci-server'
-    }
-  }
-
-  stages {
-
+node('ci-server') {
     stage('Lint Code') {
-       when {
-         allOf {
-           not { buildingTag() }
-           branch 'main'
-         }
-       }
-      steps {
-         sh 'env'
-        echo 'Lint Code'
-      }
+      print 'OK'
     }
-
     stage('Run Unit Tests') {
-       when { not { buildingTag() } }
-      steps {
-        echo 'Run Unit Tests'
-      }
+      print 'OK'
     }
-
     stage('Run Integration Tests') {
-       when { not { buildingTag() } }
-      steps {
-        echo 'Run Integration Tests'
-      }
+      print 'OK'
     }
-
     stage('Sonar Scan Code Review') {
-      when {
-         allOf {
-           not { buildingTag() }
-           branch 'main'
-         }
-       }
-      steps {
-        echo 'Sonar Scan'
-      }
+      print 'OK'
     }
-
     stage('Build Code') {
-       when { buildingTag() }
-      steps {
-        echo 'Build Code'
-      }
+      print 'OK'
     }
-
     stage('Release Software') {
-       when { buildingTag() }
-      steps {
-        echo 'Release Software'
-      }
+      print 'OK'
     }
-
-  }
 
 }
