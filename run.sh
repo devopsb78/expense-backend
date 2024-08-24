@@ -12,5 +12,6 @@ fi
 if [ -z "$NEW_RELIC_LICENSE_KEY" ]; then
   echo Environment Variable NEW_RELIC_LICENSE_KEY missing
   exit 1
+fi
 
 node -r newrelic /app/index.js
